@@ -1,0 +1,6 @@
+{
+  "PuppyHomePage": {
+    "pageHeader": "xpath://div[@id='content']/h1",
+    "viewButton": "xpath://div[@id='content']/div[2]/div/div[4]/form/div/input"
+  }
+}

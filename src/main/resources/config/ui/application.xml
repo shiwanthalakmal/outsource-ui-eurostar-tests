@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<data-project>
+     <environments>
+        <environment name="QA">
+            <application-user>
+                <username>zoneqaautomationroot</username>
+                <password>Admin01Password</password>
+                <invalidusername>tharip1</invalidusername>
+                <invalidpassword>45EXi5z7</invalidpassword>
+                <invalidemail>testuser@gmail.com</invalidemail>
+                <downloaddirectory>C:\Reports\</downloaddirectory>
+            </application-user>
+            <facebook>FMSI</facebook>
+            <twitter>FMSI (@FMSI_Inc) | Twitter</twitter>
+            <linkedin>FMSI | LinkedIn</linkedin>
+            <Reports>
+                <holiday>HolidaysReport</holiday>
+                <licenseexpiry>LicenseExpiryReport</licenseexpiry>
+                <organizationsetup>OrganizationSetupReport</organizationsetup>
+                <employeeuserlist>EmployeeUserListReport</employeeuserlist>
+                <systemuser>SystemUsersReport</systemuser>
+                <usergroupsandpermissions>UserGroupsAndPermissionsReport</usergroupsandpermissions>
+                <userlog>UserLogReport</userlog>
+                <locationaddedremoved>LocationAddedRemovedReport</locationaddedremoved>
+                <schedulingutilization>SchedulingUtilizationComparisonReport</schedulingutilization>
+                <employeehiringstatus>EmployeeHiringStatusReport</employeehiringstatus>
+                <employeeroles>EmployeeRolesReport</employeeroles>
+                <positioncodes>PositionCodesReport</positioncodes>
+                <absencetypes>AbsenceTypesReport</absencetypes>
+                <tasktypes>TaskTypesReport</tasktypes>
+                <unitattributesettings>UnitAttributeSettings</unitattributesettings>
+                <unitattributechangelog>UnitAttributeChangeLog</unitattributechangelog>
+                <autoschedulerusagelog>AutoSchedulerUsageLogReport</autoschedulerusagelog>
+                <employeeabsencechangelog>EmployeeAbsenceChangeLogReport</employeeabsencechangelog>
+                <tellerabsence>TellerAbsence</tellerabsence>
+                <schedulestatisticsdetail>ScheduleStatisticsDetail</schedulestatisticsdetail>
+                <averagecostbydowbarchart>AverageCostByDOWBarChartReport</averagecostbydowbarchart>
+                <costbyemployeebarchart>CostByEmployeeBarChartReport</costbyemployeebarchart>
+                <costbyemployeetabularchart>CostByEmployeeTabularChartReport</costbyemployeetabularchart>
+                <costbyemployeepiechart>CostByEmployeePieChartReport</costbyemployeepiechart>
+                <costbyroletabularchart>CostByRoleTabularChartReport</costbyroletabularchart>
+                <costbyrolebarchart>CostByRoleBarChartReport</costbyrolebarchart>
+                <idlecostbytimeperiod>IdleCostByTimePeriodReport</idlecostbytimeperiod>
+                <olsmonthlycostbyrolelinechart>OLS_MonthlyCostByRoleLineChart</olsmonthlycostbyrolelinechart>
+                <prodpreview>ProdPreview</prodpreview>
+                <olsgap>OLS_GapReport</olsgap>
+                <monthlybyweekdetail>MonthlyByWeekDetailReport</monthlybyweekdetail>
+                <monthlysummary>MonthlySummaryReport</monthlysummary>
+                <taskassignmentchangelog>TaskAssignmentChangeLogReport</taskassignmentchangelog>
+                <taskassignmentsettings>TaskAssignmentSettings</taskassignmentsettings>
+                <weeklyscheduledetail>WeeklyScheduleDetailReport</weeklyscheduledetail>
+                <weeklyschedulesummary>WeeklyScheduleSummaryReport</weeklyschedulesummary>
+                <olscostbyrolepiechart>OLS_CostByRolePieChart</olscostbyrolepiechart>
+                <olsautoschedulerusagelog>AutoSchedulerUsageLogReport</olsautoschedulerusagelog>
+                <employeeattributechangelog>EmployeeAttributeChangeLog</employeeattributechangelog>
+                <empexcesstime>EmpExcessTimeReport</empexcesstime>
+                <olspublishedschedules>OLS_PublishedSchedules</olspublishedschedules>
+            </Reports>
+        </environment>
+         <environment name="Production">
+             <application-user>
+                 <username>zoneqaautomationroot</username>
+                 <password>Admin01Password</password>
+                 <invalidusername>tharip1</invalidusername>
+                 <invalidpassword>45EXi5z7</invalidpassword>
+                 <invalidemail>testuser@gmail.com</invalidemail>
+                 <downloaddirectory>C:\Reports\</downloaddirectory>
+             </application-user>
+
+
+             <facebook>FMSI</facebook>
+             <twitter>FMSI (@FMSI_Inc) | Twitter</twitter>
+             <linkedin>FMSI | LinkedIn</linkedin>
+             <Reports>
+                 <holiday>HolidaysReport</holiday>
+                 <licenseexpiry>LicenseExpiryReport</licenseexpiry>
+                 <organizationsetup>OrganizationSetupReport</organizationsetup>
+                 <employeeuserlist>EmployeeUserListReport</employeeuserlist>
+                 <systemuser>SystemUsersReport</systemuser>
+                 <usergroupsandpermissions>UserGroupsAndPermissionsReport</usergroupsandpermissions>
+                 <userlog>UserLogReport</userlog>
+                 <locationaddedremoved>LocationAddedRemovedReport</locationaddedremoved>
+                 <schedulingutilization>SchedulingUtilizationComparisonReport</schedulingutilization>
+                 <employeehiringstatus>EmployeeHiringStatusReport</employeehiringstatus>
+                 <employeeroles>EmployeeRolesReport</employeeroles>
+                 <positioncodes>PositionCodesReport</positioncodes>
+                 <absencetypes>AbsenceTypesReport</absencetypes>
+                 <tasktypes>TaskTypesReport</tasktypes>
+                 <unitattributesettings>UnitAttributeSettings</unitattributesettings>
+                 <unitattributechangelog>UnitAttributeChangeLog</unitattributechangelog>
+                 <autoschedulerusagelog>AutoSchedulerUsageLog</autoschedulerusagelog>
+                 <employeeabsencechangelog>EmployeeAbsenceChangeLogReport</employeeabsencechangelog>
+                 <tellerabsence>TellerAbsence</tellerabsence>
+                 <schedulestatisticsdetail>ScheduleStatisticsDetail</schedulestatisticsdetail>
+                 <averagecostbydowbarchart>AverageCostByDOWBarChartReport</averagecostbydowbarchart>
+                 <costbyemployeebarchart>CostByEmployeeBarChartReport</costbyemployeebarchart>
+                 <costbyemployeetabularchart>CostByEmployeeTabularChartReport</costbyemployeetabularchart>
+                 <costbyemployeepiechart>CostByEmployeePieChartReport</costbyemployeepiechart>
+                 <costbyroletabularchart>CostByRoleTabularChartReport</costbyroletabularchart>
+                 <costbyrolebarchart>CostByRoleBarChartReport</costbyrolebarchart>
+                 <idlecostbytimeperiod>IdleCostByTimePeriodReport</idlecostbytimeperiod>
+                 <olsmonthlycostbyrolelinechart>OLS_MonthlyCostByRoleLineChart</olsmonthlycostbyrolelinechart>
+                 <prodpreview>ProdPreview</prodpreview>
+                 <olsgap>OLS_GapReport</olsgap>
+                 <monthlybyweekdetail>MonthlyByWeekDetailReport</monthlybyweekdetail>
+                 <monthlysummary>MonthlySummaryReport</monthlysummary>
+                 <taskassignmentchangelog>TaskAssignmentChangeLogReport</taskassignmentchangelog>
+                 <taskassignmentsettings>TaskAssignmentSettings</taskassignmentsettings>
+                 <weeklyscheduledetail>WeeklyScheduleDetailReport</weeklyscheduledetail>
+                 <weeklyschedulesummary>WeeklyScheduleSummaryReport</weeklyschedulesummary>
+                 <olscostbyrolepiechart>OLS_CostByRolePieChart</olscostbyrolepiechart>
+                 <olsautoschedulerusagelog>AutoSchedulerUsageLogReport</olsautoschedulerusagelog>
+                 <employeeattributechangelog>EmployeeAttributeChangeLog</employeeattributechangelog>
+                 <empexcesstime>EmpExcessTimeReport</empexcesstime>
+                 <olspublishedschedules>OLS_PublishedSchedules</olspublishedschedules>
+             </Reports>
+         </environment>
+    </environments>
+    <table name="Manage users">
+        <user name="kasun">
+            <score1>100</score1>
+            <score2>150</score2>
+        </user>
+        <user name="Bimal">
+            <score1>95</score1>
+            <score2>200</score2>
+        </user>
+    </table>
+    <table name="Manage users test">
+        <user name="kasun">
+            <score1>100</score1>
+            <score2>150</score2>
+        </user>
+        <user name="Bimal">
+            <score1>95</score1>
+            <score2>200</score2>
+        </user>
+    </table>
+
+</data-project>
