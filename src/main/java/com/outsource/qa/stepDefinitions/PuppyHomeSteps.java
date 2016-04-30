@@ -3,9 +3,11 @@ package com.outsource.qa.stepDefinitions;
 import com.outsource.qa.pages.RailplusHomePage;
 import com.totalamber.qa.ui.pages.PuppyHomePage;
 import com.totalamber.qa.ui.pages.PuppyViewPage;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 /**
  * PuppyHomeSteps.java - PuppyHomePage page related steps definition class
@@ -36,4 +38,5 @@ public class PuppyHomeSteps {
     public void I_should_see_puppy_view_page_button() throws Throwable {
         //viewPage = homePage.step_Click_Puppy_View();
     }
+
 }

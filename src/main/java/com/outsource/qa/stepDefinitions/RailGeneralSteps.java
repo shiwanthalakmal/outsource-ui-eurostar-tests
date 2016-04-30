@@ -2,7 +2,6 @@ package com.outsource.qa.stepDefinitions;
 
 import com.outsource.qa.pages.*;
 
-import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -25,7 +24,9 @@ public class RailGeneralSteps {
     RailSubscribePage railSubscribePage;
     RailSiteMapPage railSiteMappage;
     RailPrivacyPage railPrivacyPage;
-    RailDestinationPage railDestination;
+    RailDestinationPage railDestinationPage;
+    RailManageBookPage railManageBookPage;
+    RailSignInPage railSignInPage;
 
     @Given("^I am on the railplus home page$")
     public void I_am_on_the_railplus_home_page(){
@@ -41,7 +42,7 @@ public class RailGeneralSteps {
 
     @And("^I should see home tab as a default selected option$")
     public void I_should_see_home_tab_as_a_default_selected_option(){
-        railHomePage.check_And_validate_Staying_Home_page();
+        railHomePage.check_And_Validate_Staying_Home_page();
         LOGGER.info("Step: I should see home tab as a default selected option");
     }
 
@@ -131,13 +132,14 @@ public class RailGeneralSteps {
 
     @Then("^I should navigate to the \"([^\"]*)\" site and verify the header title as \"([^\"]*)\"$")
     public void I_should_navigate_to_the_site_and_verify_the_header_title_as(String tab, String title){
-        railDestination.check_And_Validate_Eurostart_Destination_Page(title);
+        railDestinationPage.check_And_Validate_Eurostart_Destination_Page(title);
         LOGGER.info("Step: Verify the "+tab+"  navigation flow");
     }
 
     @When("^I click \"([^\"]*)\" link under train ticket modal view$")
     public void I_click_link_under_train_ticket_modal_view(String arg) {
-        if (arg.equals("Can I Book")){railDestination = railHomePage.step_Click_On_The_Advance_Book_Link();}
+        if (arg.equals("Can I Book")){
+            railDestinationPage = railHomePage.step_Click_On_The_Advance_Book_Link();}
         else{railHomePage.step_Click_On_The_Age_Rule_Link();}
         LOGGER.info("Step: Click on the advance booking or age rule link");
     }
@@ -145,10 +147,57 @@ public class RailGeneralSteps {
     @Then("^I should see \"([^\"]*)\" overlay with country specific age rules$")
     public void I_should_see_overlay_with_country_specific_age_rules(String arg){
         railHomePage.check_And_Validate_Age_Rule_Overlay_Header(arg);
+        LOGGER.info("Step: Appear country specific age rules overlay");
     }
 
     @And("^I close \"([^\"]*)\" modal dialog$")
     public void I_close_modal_dialog(String arg){
         railHomePage.step_Close_Age_Rule_overlay();
+    }
+
+    @When("^Click on the \"([^\"]*)\" top navigation link$")
+    public void Click_on_the_top_navigation_link(String arg) throws Throwable {
+        if(arg.equals("manage booking")) {
+            railManageBookPage = ((RailManageBookPage) railHomePage.step_Click_Given_Special_Main_Menu_Link("Manage"));
+        }else if(arg.equals("my signin")){
+            railSignInPage = ((RailSignInPage) railHomePage.step_Click_Given_Special_Main_Menu_Link("Signin"));
+        }
+        LOGGER.info("Step: Click on the "+arg+" link");
+    }
+
+    @Then("^I am on the manage booking page and verify the header title as \"([^\"]*)\"$")
+    public void I_am_on_the_manage_booking_page_and_verify_the_header_title_as(String arg){
+        if (arg.equals("Agent Area")){
+            railSignInPage.check_And_Validate_PageHeader(arg);
+        }else if (arg.equals("Manage booking")) {
+            railManageBookPage.check_And_Validate_PageHeader(arg);
+        }
+        LOGGER.info("Step: I am on the manage booking page");
+    }
+
+    @When("^I mouse hover top of the \"([^\"]*)\" link and press login with out details$")
+    public void I_mouse_hover_top_of_the_link_and_press_login_with_out_details(String arg) throws Throwable {
+        if(arg.equals("manage booking")){
+            railManageBookPage = ((RailManageBookPage) railHomePage.step_Manage_Booking_link_Mouse_Over_And_Login_Without_Details());
+        }else if(arg.equals("my signin")){
+            railSignInPage = ((RailSignInPage) railHomePage.step_My_Sign_In_Link_Mouse_Over_And_Login_Without_Details());
+        }
+
+        LOGGER.info("Step: Appear country specific age rules overlay");
+    }
+
+    @And("^I set sign in user \"([^\"]*)\" text feild$")
+    public void I_set_sign_in_user_text_feild(String arg) throws Throwable {
+        if(arg.equals("username")){
+            railSignInPage.step_Set_User_SignIn_Username(arg);
+        }
+        else if(arg.equals("password")){
+            railSignInPage.step_Set_User_SignIn_Password(arg);
+        }
+    }
+
+    @Then("^I press the sign in login button$")
+    public void I_press_the_sign_in_login_button() throws Throwable {
+        railSignInPage.step_Press_SignIn_Button();
     }
 }
