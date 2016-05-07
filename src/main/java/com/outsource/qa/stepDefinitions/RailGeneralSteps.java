@@ -138,7 +138,7 @@ public class RailGeneralSteps extends SuperStep{
     }
 
     @And("^I set sign in user \"([^\"]*)\" text feild$")
-    public void I_set_sign_in_user_text_feild(String arg) throws Throwable {
+    public void  I_set_sign_in_user_text_feild(String arg) throws Throwable {
         if(arg.equals("username")){
             railSignInPage.step_Set_User_SignIn_Username(arg);
         }
@@ -150,5 +150,63 @@ public class RailGeneralSteps extends SuperStep{
     @Then("^I press the sign in login button$")
     public void I_press_the_sign_in_login_button() throws Throwable {
         railSignInPage.step_Press_SignIn_Button();
+    }
+
+    @And("^Ican see login error message as \"([^\"]*)\"$")
+    public void Ican_see_login_error_message_as(String arg) throws Throwable {
+        railSignInPage.check_And_Validate_LoginError_Message(arg);
+    }
+
+    @And("^I click on the \"([^\"]*)\" link$")
+    public void I_click_on_the_link(String arg) throws Throwable {
+        if(arg.equals("forgot password")) {
+            railSignInPage.step_Click_Forgot_Password_Link();
+        }if(arg.equals("new argent")){
+            railRegistration = railSignInPage.step_Click_New_Argent_Registration();
+        }
+    }
+
+    @And("^I navigate to the \"([^\"]*)\" page$")
+    public void I_navigate_to_the_page(String arg) throws Throwable {
+        if(arg.equals("Forgot Your Password?")) {
+            railSignInPage.check_And_Validate_ForgotPass_Title(arg);
+        }if(arg.equals("New Travel Agent?")){
+            railRegistration.check_And_Validate_Registration_Title(arg);
+        }
+    }
+
+    @And("^I provide recovery mail as \"([^\"]*)\"$")
+    public void I_provide_recovery_mail_as(String arg) throws Throwable {
+        railSignInPage.step_Set_Forgot_Password_Recovery_Mail(arg);
+    }
+
+    @Then("^I press the recovery submit button$")
+    public void I_press_the_recovery_submit_button() throws Throwable {
+        railSignInPage.step_Press_Forgot_Recovery_Sent();
+    }
+
+    @And("^I can see recovery error msg as \"([^\"]*)\"$")
+    public void I_can_see_recovery_error_msg_as(String arg) throws Throwable {
+        railSignInPage.check_And_Validate_ForgotPass_Error_Message(arg);
+    }
+
+    @And("^I press the registration submit button$")
+    public void I_press_the_registration_submit_button() throws Throwable {
+        railRegistration.step_Press_Registration_Submission_With_Errors();
+    }
+
+    @And("^I  can see compulsory fields validation error message as \"([^\"]*)\"$")
+    public void I_can_see_compulsory_fields_validation_error_message_as(String arg) throws Throwable {
+        railRegistration.check_And_Validate_RegistrationErrorMsg(arg);
+    }
+
+    @And("^I can see \"([^\"]*)\" and \"([^\"]*)\" text boxes and \"([^\"]*)\" button$")
+    public void I_can_see_and_text_boxes_and_button(String arg1, String arg2, String arg3) throws Throwable {
+        railSignInPage.check_And_Validate_Login_UI_Availability();
+    }
+
+    @And("^I can see \"([^\"]*)\" and 'new argent\" links$")
+    public void I_can_see_and_new_argent_links(String arg1) throws Throwable {
+        railSignInPage.check_And_Validate_Login_Link_Availability();
     }
 }

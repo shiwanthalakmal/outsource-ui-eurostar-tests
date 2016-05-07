@@ -17,4 +17,5 @@ public class SuperStep {
     RailDestinationPage railDestinationPage;
     RailManageBookPage railManageBookPage;
     RailSignInPage railSignInPage;
+    RailRegistrationPage railRegistration;
 }

@@ -64,7 +64,7 @@ Feature: As a guest user of the railplus.com site
     And I click on the "forgot password" link
     And I provide recovery mail as "invalid@gmail.com"
     Then I press the recovery submit button
-    And I can see recovery error msg as ""
+    And I can see recovery error msg as "Spam prevention failed. Please try again."
 
   @Regression
   Scenario: Verify the error validation when create new user without mandatory feilds
@@ -80,13 +80,18 @@ Feature: As a guest user of the railplus.com site
 
   @Regression
   Scenario: Reset forgot password
+    When Click on the "my signin" top navigation link
+    Then I am on the manage booking page and verify the header title as "Agent Area"
+    And I click on the "forgot password" link
+    And I provide recovery mail as "invalid@gmail.com"
+    Then I press the recovery submit button
+    And I can see recovery error msg as "Spam prevention failed. Please try again."
 
   @Regression
   Scenario: Verify the agent page ui availability
     When Click on the "my signin" top navigation link
     Then I am on the manage booking page and verify the header title as "Agent Area"
-    And I can see "username" and "password" text boxes
-    And I can see "login" button and login panel
+    And I can see "username" and "password" text boxes and "login" button
     And I can see "forgot password" and 'new argent" links
 
   @Regression

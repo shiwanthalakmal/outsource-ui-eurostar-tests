@@ -1,6 +1,7 @@
 package com.outsource.qa.stepDefinitions;
 
 import com.outsource.qa.pages.RailDestinationPage;
+import com.outsource.qa.pages.RailSearchResultPage;
 import com.outsource.qa.pages.RailplusHomePage;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
@@ -17,6 +18,7 @@ public class RailTicketSteps {
     private static final Logger LOGGER = LoggerFactory.getLogger(RailTicketSteps.class);
     RailplusHomePage railHomePage;
     RailDestinationPage railDestinationPage;
+    RailSearchResultPage railSearchResultPage;
 
     @Given("^I am on the railplus home page for search$")
     public void I_am_on_the_railplus_home_page_for_search() throws Throwable {
@@ -87,5 +89,31 @@ public class RailTicketSteps {
     public void Appear_return_date_and_time_dynamically() throws Throwable {
         railHomePage.check_And_Validate_Return_Date("2016");
         railHomePage.check_And_Validate_Return_Time("PM");
+    }
+
+    @When("^I click on the select the ([^\"]*) search option$")
+    public void I_click_on_the_select_the_type_search_option(String type) throws Throwable {
+        if(type.equals("return")){
+            railHomePage.click_Return_Search_Option("ON");
+        }if(type.equals("oneway")){
+            railHomePage.click_OneWay_Search_Option("ON");
+        }
+    }
+
+    @And("^i set ([^\"]*) as departure station and ([^\"]*) as arrival station$")
+    public void i_set_departure_as_departure_station_and_arrival_as_arrival_station(String dep, String arr) throws Throwable {
+        railHomePage.step_Set_Arrival_Station(arr);
+        railHomePage.step_Set_Departure_Station(dep);
+    }
+
+    @And("^I press the \"([^\"]*)\" for train button$")
+    public void I_press_the_for_train_button(String arg) throws Throwable {
+        railSearchResultPage = railHomePage.step_Perform_Search_Train();
+
+    }
+
+    @Then("^I can see train availability details page with title as ([^\"]*) to ([^\"]*)$")
+    public void I_can_see_train_availability_details_page_with_title_as_departure_to_arrival(String dep, String arr) throws Throwable {
+        railSearchResultPage.check_And_Validate_Location_Result_Title(dep,arr);
     }
 }
