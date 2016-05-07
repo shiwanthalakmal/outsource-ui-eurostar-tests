@@ -58,5 +58,57 @@ Feature: As a guest user of the railplus.com site
   @Regression @RP-29
   Scenario: Perform train search feature without both applying arrival and departure stations
 
+  @Regression
+  Scenario Outline: Verify the condition overlay availability when select traveling plan
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|
+      |oneway  |London   |Paris  |
+
+  @Regression
+  Scenario Outline: Verify the journey details overlay availability when select detail plan
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the journey details overlay
+
+    Examples:
+      |type    |departure|arrival|
+      |oneway  |London   |Paris  |
+
+  @Regression @RP-32
+  Scenario Outline: Verify the earlier train sort functionality
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+
+    Examples:
+      |type    |departure|arrival|
+      |oneway  |London   |Paris  |
+
+  @Regression @RP-32,33
+  Scenario Outline: Verify the later train sort functionality
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I verify the <sort> sort functionality
+
+    Examples:
+      |type    |departure|arrival|sort    |
+      |oneway  |London   |Paris  |earlier |
+      |oneway  |London   |Paris  |later   |
+
 
 

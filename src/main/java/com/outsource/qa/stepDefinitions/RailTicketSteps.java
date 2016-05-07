@@ -116,4 +116,25 @@ public class RailTicketSteps {
     public void I_can_see_train_availability_details_page_with_title_as_departure_to_arrival(String dep, String arr) throws Throwable {
         railSearchResultPage.check_And_Validate_Location_Result_Title(dep,arr);
     }
+
+    @And("^I select \"([^\"]*)\" class traveling plan and verify the condition overlay$")
+    public void I_select_class_traveling_plan_and_verify_the_condition_overlay(String arg1) throws Throwable {
+        railSearchResultPage.step_Select_First_Class_Travel_Option("2");
+        railSearchResultPage.check_And_Validate_Condition_Overlay();
+    }
+
+    @And("^I select \"([^\"]*)\" class traveling plan and verify the journey details overlay$")
+    public void I_select_class_traveling_plan_and_verify_the_journey_details_overlay(String arg) throws Throwable {
+        railSearchResultPage.step_Click_Journey_Details_Link();
+        railSearchResultPage.check_And_Verify_Journey_Details_Title();
+    }
+
+    @And("^I verify the ([^\"]*) sort functionality$")
+    public void I_verify_the_earlier_sort_functionality(String sort) throws Throwable {
+        if(sort.equals("earlier")){
+            railSearchResultPage.check_And_Validate_Earlier_Sort_Functionality();
+        }if(sort.equals("later")){
+            railSearchResultPage.check_And_Validate_Later_Sort_Functionality();
+        }
+    }
 }
