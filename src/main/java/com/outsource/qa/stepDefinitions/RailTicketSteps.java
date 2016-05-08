@@ -137,4 +137,25 @@ public class RailTicketSteps {
             railSearchResultPage.check_And_Validate_Later_Sort_Functionality();
         }
     }
+
+    @And("^I click on the modify search button$")
+    public void I_click_on_the_modify_search_button() throws Throwable {
+        railSearchResultPage.step_Click_Modify_Search_Button();
+    }
+
+    @And("^And i set ([^\"]*) as departure station and ([^\"]*) as arrival station in modify search$")
+    public void And_i_set_modi_departure_as_departure_station_and_modi_arrival_as_arrival_station_in_modify_search(String dep,String arr) throws Throwable {
+        railSearchResultPage.step_Set_Departure_Station_Details(dep);
+        railSearchResultPage.step_Set_Arrival_Station_Details(arr);
+    }
+
+    @And("^I press the \"([^\"]*)\" for train button in modify search$")
+    public void I_press_the_for_train_button_in_modify_search(String arg1) throws Throwable {
+        railSearchResultPage.step_Click_Search_For_Train_Button();
+    }
+
+    @And("^I can see error message like ([^\"]*)$")
+    public void I_can_see_error_message_like_error(String msg) throws Throwable {
+        railSearchResultPage.check_And_Validate_Search_Not_Found_Error_Message(msg);
+    }
 }

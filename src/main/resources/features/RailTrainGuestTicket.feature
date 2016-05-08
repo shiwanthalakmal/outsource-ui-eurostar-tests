@@ -110,5 +110,47 @@ Feature: As a guest user of the railplus.com site
       |oneway  |London   |Paris  |earlier |
       |oneway  |London   |Paris  |later   |
 
+  @Regression @RP-34
+  Scenario Outline: Verify the modify search functionality
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I click on the modify search button
+    And And i set <modi departure> as departure station and <modi arrival> as arrival station in modify search
+    And I press the "search" for train button in modify search
+    And I can see train availability details page with title as <modi departure> to <modi arrival>
 
+    Examples:
+      |type    |departure|arrival|modi departure|modi arrival         |
+      |oneway  |London   |Paris  |London        |Waterloo (Merseyside)|
+
+  @Regression @RP-126
+  Scenario Outline: Verify the train ticket search not found error messages flows
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see error message like <error>
+
+    Examples:
+      |type    |departure|arrival   |error|
+      |oneway  |London   |Parikkala |We have not been able to find a match for your search. It may be a result of one of the following:|
+
+  @Regression @RP-120
+  Scenario Outline: Verify the modify search button availability
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I click on the modify search button
+    And And i set <modi departure> as departure station and <modi arrival> as arrival station in modify search
+    And I press the "search" for train button in modify search
+    And I can see train availability details page with title as <modi departure> to <modi arrival>
+
+    Examples:
+      |type    |departure|arrival|modi departure|modi arrival         |
+      |oneway  |London   |Paris  |London        |Waterloo (Merseyside)|
 
