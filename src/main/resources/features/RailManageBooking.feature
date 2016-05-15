@@ -6,12 +6,12 @@ Feature: As a guest user of the railplus.com site
     Given I am on the railplus home page
     And Click on the "Eurostar" tab under main menu
 
-  @Regression
+  @Regression @RP-58
   Scenario: Verify the manage booking navigation flow
     When Click on the "manage booking" top navigation link
     Then I am on the manage booking page and verify the header title as "Manage booking"
 
-  @Regression
+  @Regression @RP-59
   Scenario: Verify the manage  booking quick link navigation
     When I mouse hover top of the "manage booking" link and press login with out details
     Then I am on the manage booking page and verify the header title as "Manage booking"

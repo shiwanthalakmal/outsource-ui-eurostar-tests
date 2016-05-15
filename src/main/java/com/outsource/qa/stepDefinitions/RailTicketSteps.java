@@ -1,8 +1,6 @@
 package com.outsource.qa.stepDefinitions;
 
-import com.outsource.qa.pages.RailDestinationPage;
-import com.outsource.qa.pages.RailSearchResultPage;
-import com.outsource.qa.pages.RailplusHomePage;
+import com.outsource.qa.pages.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -19,6 +17,9 @@ public class RailTicketSteps {
     RailplusHomePage railHomePage;
     RailDestinationPage railDestinationPage;
     RailSearchResultPage railSearchResultPage;
+    RailSignInPage railSignInPage;
+    RailPassengerDetailsPage railPassengerPage;
+    RailConfirmItineraryPage railConfirmationPage;
 
     @Given("^I am on the railplus home page for search$")
     public void I_am_on_the_railplus_home_page_for_search() throws Throwable {
@@ -51,21 +52,24 @@ public class RailTicketSteps {
 
     @When("^I click \"([^\"]*)\" link under train ticket modal view$")
     public void I_click_link_under_train_ticket_modal_view(String arg) {
-        if (arg.equals("Can I Book")){
-            railDestinationPage = railHomePage.step_Click_On_The_Advance_Book_Link();}
+        if (arg.equals("Can I Book")){railDestinationPage = railHomePage.step_Click_On_The_Advance_Book_Link();}
+        else if(arg.equals("Rail Pass")){railHomePage.step_Click_RailPass_Link();}
         else{railHomePage.step_Click_On_The_Age_Rule_Link();}
         LOGGER.info("Step: Click on the advance booking or age rule link");
     }
 
     @Then("^I should see \"([^\"]*)\" overlay with country specific age rules$")
     public void I_should_see_overlay_with_country_specific_age_rules(String arg){
-        railHomePage.check_And_Validate_Age_Rule_Overlay_Header(arg);
+        if(arg.equals("Age Rules")){railHomePage.check_And_Validate_Age_Rule_Overlay_Header(arg);}
+        else{railHomePage.check_And_Validate_RailPass_Overlay(arg);}
+
         LOGGER.info("Step: Appear country specific age rules overlay");
     }
 
     @And("^I close \"([^\"]*)\" modal dialog$")
     public void I_close_modal_dialog(String arg){
-        railHomePage.step_Close_Age_Rule_overlay();
+        if(arg.equals("Age Rule")){railHomePage.step_Close_Age_Rule_overlay();}
+        else{railHomePage.step_Close_RailPass_Overlay();}
     }
 
     @And("^I should see page header title as \"([^\"]*)\" for search$")
@@ -157,5 +161,42 @@ public class RailTicketSteps {
     @And("^I can see error message like ([^\"]*)$")
     public void I_can_see_error_message_like_error(String msg) throws Throwable {
         railSearchResultPage.check_And_Validate_Search_Not_Found_Error_Message(msg);
+    }
+
+    @Given("^I am successfully login railplus site$")
+    public void I_am_successfully_login_railplus_site() throws Throwable {
+        railHomePage = new RailplusHomePage(Hooks.driver);
+        LOGGER.info("Step: I am on the railplus home page");
+        railSignInPage = ((RailSignInPage) railHomePage.step_Click_Given_Special_Main_Menu_Link("Signin"));
+        railSignInPage.step_Set_User_SignIn_Username("nivanthakarajapakse2016@gmail.com");
+        railSignInPage.step_Set_User_SignIn_Password("Test!234");
+        railSignInPage.step_Press_SignIn_Button();
+        LOGGER.info("Step: I login successfully");
+    }
+
+    @And("^I perform shopping cart function$")
+    public void I_perform_shopping_cart_function() throws Throwable {
+        railPassengerPage = railSearchResultPage.step_Perform_Shopping_Cart_Button();
+        LOGGER.info("Step: I Perform shopping cart button");
+    }
+
+    @And("^I set passenger details title as ([^\"]*), name as ([^\"]*) and age as ([^\"]*)$")
+    public void I_set_passenger_details_title_as_title_name_as_fname_lname_and_age_as_age(String title,String fullName,String age) throws Throwable {
+        String[] name = fullName.split(" ");
+        railPassengerPage.step_Set_MrTitle(title);
+        railPassengerPage.step_Set_Passenger_FName(name[0]);
+        railPassengerPage.step_Set_Passenger_LName(name[1]);
+        railPassengerPage.step_Set_Passenger_Age(age);
+    }
+
+    @And("^I am on the passenger details page$")
+    public void I_am_on_the_passenger_details_page() throws Throwable {
+        railPassengerPage.check_And_Validate_Passenger_Title("Enter Passenger Details");
+    }
+
+    @And("^I continue passenger details flow by checking apply conditions$")
+    public void I_continue_passenger_detals_flow_by_checking_apply_conditions() throws Throwable {
+        railPassengerPage.step_Check_Accept_Condition();
+        railConfirmationPage = railPassengerPage.step_Continue_Passenger_Details_Flow();
     }
 }

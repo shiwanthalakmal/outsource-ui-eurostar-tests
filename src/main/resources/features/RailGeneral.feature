@@ -38,9 +38,14 @@ Feature: As a guest user of the railplus.com site
     |Privacy |Privacy policy|
 
   @Regression
-  Scenario: Verify the home page social media link navigation
-    When I click on the home page "facebook" link
-    Then I should navigate to the particular site as a new window and verify the url as "facebook"
+  Scenario Outline: Verify the home page social media link navigation
+    When I click on the home page link <link> icon
+    Then I should navigate to the particular site as a new window and verify the url as <title>
+
+    Examples:
+      |link    |title|
+      |facebook|Facebook|
+      |twitter |Share a link on Twitter|
 
   @Regression
   Scenario: Verify the cancellation policy pdf download flow

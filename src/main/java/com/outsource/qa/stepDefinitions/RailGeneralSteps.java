@@ -209,4 +209,52 @@ public class RailGeneralSteps extends SuperStep{
     public void I_can_see_and_new_argent_links(String arg1) throws Throwable {
         railSignInPage.check_And_Validate_Login_Link_Availability();
     }
+
+    @And("^I can see user \"([^\"]*)\" in home page$")
+    public void I_can_see_user_in_home_page(String arg) throws Throwable {
+        railHomePage.check_And_Validate_Logged_Agency_Code(arg);
+    }
+
+    @And("^I set sign in user \"([^\"]*)\" text feild as \"([^\"]*)\"$")
+    public void I_set_sign_in_user_text_feild_as(String arg, String info) throws Throwable {
+        if(arg.equals("username")){
+            railSignInPage.step_Set_User_SignIn_Username(info);
+        }
+        else if(arg.equals("password")){
+            railSignInPage.step_Set_User_SignIn_Password(info);
+        }
+    }
+
+    @Then("^I click the \"([^\"]*)\" link$")
+    public void I_click_the_link(String arg1) throws Throwable {
+        railHomePage.step_Site_Logout();
+    }
+
+    @When("^I click on the home page \"([^\"]*)\" link$")
+    public void I_click_on_the_home_page_link(String arg) throws Throwable {
+
+    }
+
+    @Then("^I should navigate to the particular site as a new window and verify the url as ([^\"]*)$")
+    public void I_should_navigate_to_the_particular_site_as_a_new_window_and_verify_the_url_as(String arg) throws Throwable {
+        if(arg.equals("Facebook")){
+            railHomePage.check_And_Validate_Facebook_Panel(arg);
+        }else{
+            railHomePage.check_And_Validate_Twitter_Panel(arg);
+        }
+    }
+
+    @When("^I click on the home page link ([^\"]*) icon$")
+    public void I_click_on_the_home_page_link_link_icon(String arg) throws Throwable {
+        if(arg.equals("facebook")){
+            railHomePage.step_Click_Facebook_Icon();
+        }if(arg.equals("twitter")){
+            railHomePage.step_Click_Twitter_Icon();
+        }
+    }
+
+    @And("^I can not see user \"([^\"]*)\" in home page$")
+    public void I_can_not_see_user_in_home_page(String arg) throws Throwable {
+        railHomePage.check_And_Validate_Logged_Agency_Code_Not_Available(arg);
+    }
 }
