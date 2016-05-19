@@ -66,9 +66,248 @@ Feature: As a Guest user of the railplus.com site
     And I set passenger details title as <title>, name as <fullname> and age as <age>
     And I continue passenger details flow by checking apply conditions
 
-  Examples:
-  |type    |departure|arrival|title|fullname    |age|
-  |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-38
+  Scenario Outline: Guest user enter passenger details to confirm order
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-41
+  Scenario Outline: Guest user try to continue passenger details flow without apply condition
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow without apply conditions
+    And I verify the alert message "You must agree to the passenger conditions to continue." and accept it
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-43
+  Scenario Outline: Guest user successfully navigate to confirm itinerary level
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-46
+  Scenario Outline: Guest user successfully navigate to confirm itinerary level and remove existing cart item
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I remove existing shopping cart item and accept confirmation
+    And I should see page header title as "Welcome to Rail Plus" for search
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-45
+  Scenario Outline: Guest user successfully navigate to confirm itinerary level and continue shopping again
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I continue shopping again by clicking continue button
+    And I should see page header title as "Welcome to Rail Plus".
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-50
+  Scenario Outline: Guest user successfully navigate to delivery payment page
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-112
+  Scenario Outline: Guest user successfully navigate to delivery payment page and verify page title
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-51
+  Scenario Outline: Guest user successfully navigate to delivery payment page and back to login now
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+    And I click on the "login now" link.
+    And I should see page header title as "Agent Area".
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-63
+  Scenario Outline: Guest user verify the search item in-progress state
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train search in-progress state
+
+    Examples:
+      |type    |departure|arrival|
+      |oneway  |London   |Paris  |
+
+  @Regression @RP-42
+  Scenario Outline: Guest user try to continue passenger details flow without giving country details
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I clear default allocated country
+    And I continue passenger details flow by checking apply conditions
+    And I can see inline validation error message as  "Please enter a country of origin for passenger 1."
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-44
+  Scenario Outline: Guest user successfully navigate to confirm itinerary level and verify shopping basket
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I can see shopping basket items as "1 Item"
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-40
+  Scenario Outline: Guest user provide non-integer value for the passenger age detail
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I verify the alert message "Please enter a correct age for Traveller 1" and accept it
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |A |
+
+  @Regression @RP-39
+  Scenario Outline: Guest user enter passenger details by selecting apply condition
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
 
   @Regression @RP-27
   Scenario: Guest user Perform train search feature without applying departure station

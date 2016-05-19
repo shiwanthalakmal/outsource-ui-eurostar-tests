@@ -1,8 +1,7 @@
 package com.outsource.qa.stepDefinitions;
 
 import com.outsource.qa.pages.RailplusHomePage;
-import com.totalamber.qa.ui.pages.PuppyHomePage;
-import com.totalamber.qa.ui.pages.PuppyViewPage;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;

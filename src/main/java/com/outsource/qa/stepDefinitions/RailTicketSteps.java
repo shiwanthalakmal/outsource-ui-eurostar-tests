@@ -20,6 +20,7 @@ public class RailTicketSteps {
     RailSignInPage railSignInPage;
     RailPassengerDetailsPage railPassengerPage;
     RailConfirmItineraryPage railConfirmationPage;
+    RailDeliveryInfoPage railDeliveryPage;
 
     @Given("^I am on the railplus home page for search$")
     public void I_am_on_the_railplus_home_page_for_search() throws Throwable {
@@ -81,7 +82,7 @@ public class RailTicketSteps {
     @Then("^I should navigate to the \"([^\"]*)\" site and verify the header title as \"([^\"]*)\" for search$")
     public void I_should_navigate_to_the_site_and_verify_the_header_title_as_for_search(String title, String tab) throws Throwable {
         railDestinationPage.check_And_Validate_Eurostart_Destination_Page(title);
-        LOGGER.info("Step: Verify the "+tab+"  navigation flow");
+        LOGGER.info("Step: Verify the " + tab + "  navigation flow");
     }
 
     @When("^I click on the select the \"([^\"]*)\" search option$")
@@ -118,7 +119,7 @@ public class RailTicketSteps {
 
     @Then("^I can see train availability details page with title as ([^\"]*) to ([^\"]*)$")
     public void I_can_see_train_availability_details_page_with_title_as_departure_to_arrival(String dep, String arr) throws Throwable {
-        railSearchResultPage.check_And_Validate_Location_Result_Title(dep,arr);
+        railSearchResultPage.check_And_Validate_Location_Result_Title(dep, arr);
     }
 
     @And("^I select \"([^\"]*)\" class traveling plan and verify the condition overlay$")
@@ -198,5 +199,92 @@ public class RailTicketSteps {
     public void I_continue_passenger_detals_flow_by_checking_apply_conditions() throws Throwable {
         railPassengerPage.step_Check_Accept_Condition();
         railConfirmationPage = railPassengerPage.step_Continue_Passenger_Details_Flow();
+    }
+
+    @And("^I verify the alert message \"([^\"]*)\" and accept it$")
+    public void I_verify_the_alert_message_and_accept_it(String arg) throws Throwable {
+        railPassengerPage.check_And_Validate_Waning_Alert_Msg_And_Accept(arg);
+    }
+
+    @And("^I continue passenger details flow without apply conditions$")
+    public void I_continue_passenger_details_flow_without_apply_conditions() throws Throwable {
+        railPassengerPage.step_Continue_Passenger_Details_Flow();
+    }
+
+    @And("^I am on the confirm itinerary page$")
+    public void I_am_on_the_confirm_itinerary_page() throws Throwable {
+        railConfirmationPage.check_And_Validate_Confirmation_Page("Shopping basket summary");
+    }
+
+    @And("^I can see shopping basket items as \"([^\"]*)\"$")
+    public void I_can_see_shopping_basket_items_as(String arg) throws Throwable {
+        railConfirmationPage.check_And_Validate_Shopping_bag(arg);
+    }
+
+    @And("^I clear default allocated country$")
+    public void I_clear_default_allocated_country() throws Throwable {
+        railPassengerPage.step_Clear_Existing_Country_Record();
+    }
+
+    @And("^I can see inline validation error message as  \"([^\"]*)\"$")
+    public void I_can_see_inline_validation_error_message_as(String arg) throws Throwable {
+        railPassengerPage.check_And_Validate_Validation_Error_Msg(arg);
+    }
+
+    @And("^I continue shopping again by clicking continue button$")
+    public void I_continue_shopping_again_by_clicking_continue_button() throws Throwable {
+        railHomePage = railConfirmationPage.step_Back_To_Continue_Shopping();
+    }
+
+    @Then("^I should see \"([^\"]*)\" reservation option as the un-selected option and \"([^\"]*)\" option will set as \"([^\"]*)\" Fares$")
+    public void I_should_see_reservation_option_as_the_un_selected_option_and_option_will_set_as_Fares(String arg1, String arg2, String arg3) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
+
+    @And("^I check \"([^\"]*)\" reservation option$")
+    public void I_check_reservation_option(String arg1) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
+
+    @And("^I verify the current availability of the seat reservation$")
+    public void I_verify_the_current_availability_of_the_seat_reservation() throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
+
+    @And("^I should see page header title as \"([^\"]*)\".$")
+    public void I_should_see_page_header_title_as_(String arg) throws Throwable {
+        if(arg.equals("Payment and delivery details")){
+            railDeliveryPage.check_And_Validate_Payment_DeliveryInfo_Page(arg);
+        }else if(arg.equals("Agent Area")){
+            railSignInPage.check_And_Validate_PageHeader(arg);
+        }else {
+            railHomePage.check_And_Validate_Eurostar_Home_Page(arg);
+        }
+        LOGGER.info("Step: I should see page header title as "+arg);
+    }
+
+    @And("^I can see train search in-progress state$")
+    public void I_can_see_train_search_in_progress_state() throws Throwable {
+        LOGGER.info("Step: I wait until item search");
+    }
+
+    @And("^I remove existing shopping cart item and accept confirmation$")
+    public void I_remove_existing_shopping_cart_item_and_accept_confirmation() throws Throwable {
+        railConfirmationPage.step_Remove_ShoppingCart_Item();
+        railConfirmationPage.step_Remove_CartItem_Acceptance_Overlay();
+        LOGGER.info("Step: I remove existing shopping cart item");
+    }
+
+    @And("^I perform checkout upto delivery page$")
+    public void I_perform_checkout_upto_delivery_page() throws Throwable {
+        railDeliveryPage = railConfirmationPage.step_Initial_Checkout().step_Final_Checkout();
+    }
+
+    @And("^I click on the \"([^\"]*)\" link.$")
+    public void I_click_on_the_link(String arg1) throws Throwable {
+        railSignInPage = railDeliveryPage.step_Click_On_The_LoingNow_Link();
     }
 }
