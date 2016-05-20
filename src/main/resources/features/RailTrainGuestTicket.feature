@@ -414,3 +414,37 @@ Feature: As a Guest user of the railplus.com site
       |type    |departure|arrival|modi departure|modi arrival         |
       |oneway  |London   |Paris  |London        |Waterloo (Merseyside)|
 
+  @Regression @RP-68,69,114,72
+  Scenario Outline: Guest user verify the traveling fares options
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    Then I set traveling fares as <cost>
+    And I press the "search" for train button
+    Then I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|cost    |
+      |oneway  |London   |Paris  |cheapest|
+      |oneway  |London   |Paris  |flexible|
+      |oneway  |London   |Paris  |direct  |
+
+  @Regression @RP-72
+  Scenario Outline: Guest user verify the traveling direct fare scheduled times change
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    And I set scheduled time as "2:00 PM - 4:00 PM"
+    Then Appear return date and time dynamically
+    Then I set traveling fares as <cost>
+    And I press the "search" for train button
+    Then I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|cost  |
+      |oneway  |London   |Paris  |direct|
+
+
+
+

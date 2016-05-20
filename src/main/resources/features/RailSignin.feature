@@ -115,3 +115,10 @@ Feature: As a guest user of the railplus.com site
     Then I click the "sign out" link
     And I can not see user "Agency Code: 13" in home page
 
+  @Regression @RP-13
+  Scenario: Verify the site breadcumb availability
+    When Click on the "my signin" top navigation link
+    Then I am on the manage booking page and verify the header title as "Agent Area"
+    And I verify the current breadcumb link and click on it
+    And I should see home page header title as "Welcome to Rail Plus"
+

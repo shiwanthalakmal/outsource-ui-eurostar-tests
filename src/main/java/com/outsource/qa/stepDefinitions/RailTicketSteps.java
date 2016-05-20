@@ -287,4 +287,14 @@ public class RailTicketSteps {
     public void I_click_on_the_link(String arg1) throws Throwable {
         railSignInPage = railDeliveryPage.step_Click_On_The_LoingNow_Link();
     }
+
+    @Then("^I set traveling fares as ([^\"]*)$")
+    public void I_set_traveling_fares_as_cost(String cost) throws Throwable {
+        railHomePage.step_Choose_Travel_Fares(cost);
+    }
+
+    @And("^I set scheduled time as \"([^\"]*)\"$")
+    public void I_set_scheduled_time_as(String arg) throws Throwable {
+        railHomePage.step_Set_Return_Scheduled_Date(arg);
+    }
 }

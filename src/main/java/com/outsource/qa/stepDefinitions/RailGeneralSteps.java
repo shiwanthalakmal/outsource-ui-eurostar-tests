@@ -257,4 +257,16 @@ public class RailGeneralSteps extends SuperStep{
     public void I_can_not_see_user_in_home_page(String arg) throws Throwable {
         railHomePage.check_And_Validate_Logged_Agency_Code_Not_Available(arg);
     }
+
+    @And("^I verify the current breadcumb link and click on it$")
+    public void I_verify_the_current_breadcumb_link_and_click_on_it() throws Throwable {
+        railHomePage = railSignInPage.check_And_Validate_Breadcumb_Functionality("Home");
+    }
+
+    @And("^I should see home page header title as \"([^\"]*)\"$")
+    public void I_should_see_home_page_header_title_as(String arg) throws Throwable {
+        railHomePage.check_And_Validate_Eurostar_Home_Page(arg);
+    }
+
+
 }
