@@ -424,3 +424,112 @@ Feature: As a Registered agent user of the railplus.com site
     Examples:
       |type    |departure|arrival|cost  |
       |oneway  |London   |Paris  |direct|
+
+  @Regression @RP-
+  Scenario Outline: Registered agent successfully place order and verify ticket details
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I verify the arrival and destination places as <departure> to <arrival>
+    And I verify the passenger details name as <fullname> and age is "25"
+
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-77
+  Scenario Outline: Registered agent try to search without provide departure location details
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see search error messageas "Departure station could not be found."
+
+    Examples:
+      |type    |departure|arrival|
+      |return  |         |Paris  |
+
+  @Regression @RP-78
+  Scenario Outline: Registered agent try to search without provide arrival location details
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see search error messageas "Arrival station could not be found."
+
+    Examples:
+      |type    |departure|arrival|
+      |return  |London   |       |
+
+  @Regression @RP-79
+  Scenario Outline: Registered agent try to search without provide both departure and arrival location details
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I press the "search" for train button
+    And I can see search error messageas "Departure station could not be found.Arrival station could not be found."
+
+    Examples:
+      |type    |departure|arrival|
+      |return  |         |       |
+
+  @Regression @RP-96
+  Scenario Outline: Registered agent apply seat reservations only option
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then I select seat reservations only option
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|
+      |return  |London   |Paris  |
+
+  @Regression @RP-125
+  Scenario Outline: Registered agent verify total price for pessenger
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    Then I verify no of passenger message as "Prices shown are the total price for 1 passenger"
+
+    Examples:
+      |type    |departure|arrival|
+      |return  |London   |Paris  |
+
+  @Regression @RP-99
+  Scenario Outline: Registered agent apply seat reservations only option and verify result
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then I select seat reservations only option
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|
+      |return  |London   |Paris  |
+
+  @Regression @RP-97
+  Scenario Outline: Registered agent verify the traveling flexible fare scheduled
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    Then I set traveling fares as <cost>
+    And I press the "search" for train button
+    Then I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|cost    |
+      |oneway  |London   |Paris  |flexible|

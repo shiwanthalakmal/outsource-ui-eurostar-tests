@@ -297,4 +297,35 @@ public class RailTicketSteps {
     public void I_set_scheduled_time_as(String arg) throws Throwable {
         railHomePage.step_Set_Return_Scheduled_Date(arg);
     }
+
+    @And("^I verify the arrival and destination places as ([^\"]*) to ([^\"]*)$")
+    public void I_verify_the_arrival_and_destination_places_as_departure_to_arrival(String depa,String  arri) throws Throwable {
+        railConfirmationPage.check_And_Validate_Travel_Locations(depa, arri);
+    }
+
+    @And("^I verify the passenger details name as ([^\"]*) and age is \"([^\"]*)\"$")
+    public void I_verify_the_passenger_details_name_as_and_age_is(String msg, String age) throws Throwable {
+        String details = msg;
+        railConfirmationPage.check_And_Validate_Passenger_Details(details, age);
+    }
+
+    @And("^I can see waning alert message as \"([^\"]*)\"$")
+    public void I_can_see_waning_alert_message_as(String arg) throws Throwable {
+        railSearchResultPage.check_And_Validate_Waning_Alert_Message(arg);
+    }
+
+    @And("^I can see search error messageas \"([^\"]*)\"$")
+    public void I_can_see_search_error_messageas(String arg) throws Throwable {
+        railHomePage.check_And_Validate_Search_Error_Message(arg);
+    }
+
+    @Then("^I select seat reservations only option$")
+    public void I_select_seat_reservations_only_option() throws Throwable {
+        railHomePage.step_Choose_Seat_Reservation_Selection();
+    }
+
+    @Then("^I verify no of passenger message as \"([^\"]*)\"$")
+    public void I_verify_no_of_passenger_message_as(String arg) throws Throwable {
+        railSearchResultPage.check_And_Validate_NoOf_Passenger_Details(arg);
+    }
 }
