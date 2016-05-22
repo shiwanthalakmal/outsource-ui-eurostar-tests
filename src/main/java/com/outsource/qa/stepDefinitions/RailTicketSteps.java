@@ -328,4 +328,42 @@ public class RailTicketSteps {
     public void I_verify_no_of_passenger_message_as(String arg) throws Throwable {
         railSearchResultPage.check_And_Validate_NoOf_Passenger_Details(arg);
     }
+
+    @And("^I change departure date settings as \"([^\"]*)\"$")
+    public void I_change_departure_date_settings_as(String arg) throws Throwable {
+        railHomePage.step_Set_Travel_Scheduled_Date(arg);
+    }
+
+    @And("^I verify the contact details form availability$")
+    public void I_verify_the_contact_details_form_availability() throws Throwable {
+        railDeliveryPage.check_And_Validate_Contact_Info_Editability();
+    }
+
+    @And("^I set set departure value \"([^\"]*)\"$")
+    public void I_set_set_departure_value(String arg) throws Throwable {
+        railDeliveryPage.check_And_Validate_Departure_Date_Editability();
+    }
+
+    @And("^I set postage panel required feilds$")
+    public void I_set_postage_panel_required_feilds() throws Throwable {
+        railDeliveryPage.step_Set_Postage_Details();
+    }
+
+    @And("^I verify the promotion code functionality with invalid code as \"([^\"]*)\"$")
+    public void I_verify_the_promotion_code_functionality_with_invalid_code_as(String arg) throws Throwable {
+        railDeliveryPage.step_Set_Delivery_Email_Address("nivanthakarajapakse2016@gmail.com");
+        railDeliveryPage.step_Set_Promotion_Code(arg);
+        railDeliveryPage.step_Click_Discount_Button();
+    }
+
+    @And("^I can see discount error message as \"([^\"]*)\"$")
+    public void I_can_see_discount_error_message_as(String arg) throws Throwable {
+        railDeliveryPage.check_And_Validate_Discount_Error_Message(arg);
+    }
+
+    @And("^I can see discount error message as \"([^\"]*)\" loged user$")
+    public void I_can_see_discount_error_message_as_loged_user(String arg1) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
 }

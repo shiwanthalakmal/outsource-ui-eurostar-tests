@@ -549,3 +549,107 @@ Feature: As a Guest user of the railplus.com site
       |return  |London   |Paris  |
 
 
+  @Regression @RP-53
+  Scenario Outline: Guest user successfully navigate to delivery payment page and verify contact form availability
+    When I am successfully login railplus site
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I change departure date settings as "Sat, 4 Jun 2016"
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+    And I verify the contact details form availability
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-52
+  Scenario Outline: Guest user successfully navigate to delivery payment page and verify departure date availability
+    When I am successfully login railplus site
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I change departure date settings as "Sat, 4 Jun 2016"
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+    And I set set departure value "22/05/2016"
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-55
+  Scenario Outline: Guest user successfully navigate to delivery payment page and verify postage panel availability
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I change departure date settings as "Sat, 4 Jun 2016"
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+    And I set postage panel required feilds
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-56
+  Scenario Outline: Guest user successfully navigate to delivery payment page and verify promotion code functionality
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    And I change departure date settings as "Sat, 4 Jun 2016"
+    And I press the "search" for train button
+    And I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+    And I perform shopping cart function
+    And I am on the passenger details page
+    And I set passenger details title as <title>, name as <fullname> and age as <age>
+    And I continue passenger details flow by checking apply conditions
+    And I am on the confirm itinerary page
+    And I perform checkout upto delivery page
+    And I should see page header title as "Payment and delivery details".
+    And I verify the promotion code functionality with invalid code as "ZBIUB"
+    And I can see discount error message as "NOT VALID"
+
+    Examples:
+      |type    |departure|arrival|title|fullname    |age|
+      |oneway  |London   |Paris  |Mrs  |Mala Kumari |25 |
+
+  @Regression @RP-71
+  Scenario Outline: Guest user verify the traveling cheapest fare scheduled
+    When I click on the select the <type> search option
+    And i set <departure> as departure station and <arrival> as arrival station
+    Then Appear return date and time dynamically
+    Then I set traveling fares as <cost>
+    And I press the "search" for train button
+    Then I can see train availability details page with title as <departure> to <arrival>
+    And I select "first" class traveling plan and verify the condition overlay
+
+    Examples:
+      |type    |departure|arrival|cost    |
+      |oneway  |London   |Paris  |cheapest|
